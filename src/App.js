@@ -76,11 +76,10 @@ export default class App extends React.Component {
     updateLocation() {
         return this.tryGps().then((geo = this.state.geo) => this.updateTimetable({geo, progressBar: true}))
     }
-    tryGps({failsafe} = {failsafe:false}){
+    tryGps(){
         return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(
-            position => resolve({long: position.coords.longitude, lat: position.coords.latitude}),
-            () => failsafe ? resolve() : this.tryGps({failsafe:true}), 
-            {enableHighAccuracy: !failsafe, timeout: 2000, maximumAge: 10000}))
+            position => resolve({long: position.coords.longitude, lat: position.coords.latitude}), () => resolve()))
+            /*, overriden parameters cause timeout {enableHighAccuracy: !failsafe, timeout: 2000, maximumAge: 10000}*/
     }
     validateToken(newValue) {
         core.testToken(newValue)
