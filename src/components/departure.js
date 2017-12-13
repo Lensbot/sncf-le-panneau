@@ -30,7 +30,7 @@ export default class Departure extends React.Component {
     scrollJourney(){
         if (this.stopsList && this.stopsList.scrollTo) {
             const fromTop = IsNative ? 13 : 3
-            const delta = IsNative ? ((this.state.height || 60) * 0.4) : (this.state.height || 60) * 0.45 -  0.5
+            const delta = IsNative ? ((this.state.height || 60) * 0.387) : (this.state.height || 60) * 0.45 -  0.5
             const maybeNextScroll = (this.state.scrollFromTop||3) + delta
             this.setState({
                 scrollFromTop: maybeNextScroll >= this.state.journeyHeight ? fromTop : maybeNextScroll
